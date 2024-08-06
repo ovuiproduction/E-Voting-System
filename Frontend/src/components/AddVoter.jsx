@@ -4,6 +4,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import "../css/ScheduleElection.css";
 import Alert, { AlertVoter } from "./Alert";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function AddVoter() {
   const [voterId, setVoterId] = useState('');
   const [name, setName] = useState('');
@@ -29,7 +31,7 @@ export default function AddVoter() {
   let onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/add-voter', {
+      const response = await fetch(`${server_url}/add-voter`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -5,6 +5,8 @@ import "../css/ScheduleElection.css";
 import Alert, { AlertOtpSent, AlertOtpInvalid, AlertVoterNotRegistered, AlertVoteCasted } from "./Alert"; // Import the new Alert component
 import { useVerification } from "../VerificationContext";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function Voter() {
   const [voterId, setVoterId] = useState('');
   const [otp, setOtp] = useState('');
@@ -36,7 +38,7 @@ export default function Voter() {
   let onCheckVoterId = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/check-voter', {
+      const response = await fetch(`${server_url}/check-voter`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

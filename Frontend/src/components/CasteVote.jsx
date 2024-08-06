@@ -5,6 +5,8 @@ import "../css/ScheduleElection.css";
 import Alert, { AlertCastedVote } from "./Alert"; // Ensure this is correctly imported
 import "../css/CasteVote.css";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function CasteVote() {
     const location = useLocation();
     const [voterId, setVoterId] = useState(location.state?.voterId || ''); // Get voterId from navigation state
@@ -33,7 +35,7 @@ export default function CasteVote() {
 
     const fetchDetailsFromVoterId = async () => {
         try {
-            const response = await fetch('http://localhost:5000/get-details', {
+            const response = await fetch(`${server_url}/get-details`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +69,7 @@ export default function CasteVote() {
 
     const fetchCandidates = async () => {
         try {
-            const response = await fetch('http://localhost:5000/get-candidates', {
+            const response = await fetch(`${server_url}/get-candidates`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,7 +121,7 @@ export default function CasteVote() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/cast-vote', {
+            const response = await fetch(`${server_url}/cast-vote`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

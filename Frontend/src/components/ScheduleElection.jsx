@@ -4,6 +4,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import "../css/ScheduleElection.css";
 import Alert, { AlertSuccess } from "./Alert";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function ScheduleElection() {
   const [state, setState] = useState("");
   const [assemblyForElection, setAssemblyForElection] = useState("");
@@ -39,7 +41,7 @@ export default function ScheduleElection() {
   let onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/schedule-election', {
+      const response = await fetch(`${server_url}/schedule-election`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -5,6 +5,8 @@ import "../css/ScheduleElection.css";
 import Alert, { AlertOtpSent, AlertOtpInvalid, AlertAdminNotRegistered, AlertVoteCasted, AlertLogin } from "./Alert";
 import { useVerification } from "../VerificationContext";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function VerifyAdmin() {
   const [adminId, setAdminId] = useState('');
   const [otp, setOtp] = useState('');
@@ -36,7 +38,7 @@ export default function VerifyAdmin() {
   let onCheckAdminId = async (e) => {
     e.preventDefault();
     try { 
-      const response = await fetch('http://localhost:5000/check-admin', {
+      const response = await fetch(`${server_url}/check-admin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +60,7 @@ export default function VerifyAdmin() {
   let onVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/verify-admin-otp', {
+      const response = await fetch(`${server_url}/verify-admin-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

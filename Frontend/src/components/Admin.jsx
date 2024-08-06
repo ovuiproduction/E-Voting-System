@@ -7,6 +7,7 @@ import img4 from "../Assets/images/scheduleElection.jpg";
 import img5 from "../Assets/images/result2.png";
 import "../css/Admin.css";
 
+
 const Admin = () => {
   const navigate = useNavigate();
 

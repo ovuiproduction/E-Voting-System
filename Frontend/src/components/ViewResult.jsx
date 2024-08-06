@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.css';
 import "../css/ViewResult.css";
 
+const server_url = process.env.REACT_APP_SERVER_URL;
+
 export default function ViewResult() {
   const [state, setState] = useState('');
   const [assemblyForElection, setAssembly] = useState('');
@@ -28,7 +30,7 @@ export default function ViewResult() {
   let onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/view-result', {
+      const response = await fetch(`${server_url}/view-result`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
